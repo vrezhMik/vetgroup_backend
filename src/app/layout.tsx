@@ -1,3 +1,4 @@
+import Card from "@/components/Card/card.component";
 import "./../styles/_variables.scss";
 import "./../styles/globals.scss";
 
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body className={`${montserrat.className} relative`}>
+        {children}
+        <Card />
+      </body>
     </html>
   );
 }
