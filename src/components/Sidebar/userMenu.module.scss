@@ -1,0 +1,37 @@
+@import "./../../styles/variables";
+
+.userMenu {
+  background-color: $theme-color-dark;
+  width: 20%;
+  height: 100%;
+  padding-top: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 30px;
+  position: fixed;
+  &Logo {
+    width: 100%;
+    height: 100px;
+    svg {
+      height: 100%;
+      width: 100%;
+      path {
+        fill: $theme-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .userMenu {
+    width: 100%;
+    height: 100px;
+    padding: 5px 50px;
+    display: flex;
+    align-items: center;
+    &Logo {
+      width: 100px;
+      height: 70px;
+    }
+  }
+}
