@@ -12,7 +12,7 @@ export default function UserPageMenu() {
         className={currentState === AdminMenuState.Users ? style.active : ""}
         onClick={() => setCurrentState(AdminMenuState.Users)}
       >
-        History
+        Users
       </button>
       <button
         className={currentState === AdminMenuState.Settings ? style.active : ""}

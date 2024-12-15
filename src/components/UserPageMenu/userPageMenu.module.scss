@@ -1,4 +1,4 @@
-@import "./../../../styles/variables";
+@import "./../../styles/variables";
 
 .menu {
   padding-top: 50px;
@@ -19,4 +19,15 @@
 .active {
   color: $theme-default-color !important;
   background-color: $theme-color-dark;
+}
+
+@media (max-width: 780px) {
+  .menu {
+    border-bottom: none;
+    padding: 0;
+    justify-content: center;
+    button {
+      border-bottom: 1px solid $theme-color-dark;
+    }
+  }
 }
