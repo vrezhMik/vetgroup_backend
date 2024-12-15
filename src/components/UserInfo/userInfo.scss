@@ -1,0 +1,21 @@
+@import "./../../styles/variables";
+
+.userInfo {
+  padding: 50px;
+  div {
+    border-bottom: 1px solid $theme-color-light;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    color: $theme-color-dark;
+    p {
+      font-size: 25px;
+      font-weight: 700;
+      span {
+        font-weight: 300;
+      }
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

@@ -20,3 +20,11 @@ export const useCardState = create<UseCardStateProps>((set) => ({
       cardState: value,
     })),
 }));
+
+export const useCurrentUser = create((set) => ({
+  currentUser: {},
+  setCurrentUser: (user) =>
+    set(() => ({
+      currentUser: user,
+    })),
+}));

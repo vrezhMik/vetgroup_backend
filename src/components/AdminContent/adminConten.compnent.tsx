@@ -8,7 +8,7 @@ import "./adminComponent.scss";
 import HistoryList from "../HistoryList/historyList.component";
 
 export default function AdminContent() {
-  const { currentState, setCurrentState } = useAdminMenu();
+  const { currentState } = useAdminMenu();
   return (
     <div className="content">
       <UserPageMenu />
