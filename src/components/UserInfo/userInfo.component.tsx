@@ -3,6 +3,7 @@
 import { useCurrentUser } from "@/store/store";
 import "./userInfo.scss";
 import { useState } from "react";
+import ArrowSVG from "../Icons/ArrowSVG";
 
 const allProducts = [
   {
@@ -111,15 +112,20 @@ export default function UserInfo() {
         </p>
       </div>
       <div className="row">
-        <p>
-          <button onClick={() => setListStatus(!listStatus)}>{">"}</button>
-          History
+        <p className="list_button">
+          <button
+            onClick={() => setListStatus(!listStatus)}
+            className={listStatus ? "open" : ""}
+          >
+            <ArrowSVG />
+          </button>
+          <span>History</span>
         </p>
         {listStatus && (
-          <div>
+          <div className="list">
             <ul>
               {currentUser.history?.map((element, key) => (
-                <li key={key}>
+                <li key={key} className="history_element">
                   <span>{element.name}</span>
                   <span>{element.totalPrice}</span>
                   <span>{element.qty}</span>
@@ -130,33 +136,38 @@ export default function UserInfo() {
         )}
       </div>
       <div className="row">
-        <p>
-          <button onClick={() => setSaleStatus(!saleStatus)}>{">"}</button>
-          Sale
+        <p className="list_button">
+          <button
+            onClick={() => setSaleStatus(!saleStatus)}
+            className={saleStatus ? "open" : ""}
+          >
+            <ArrowSVG />
+          </button>
+          <span>Sale</span>
         </p>
         {saleStatus && (
-          <div>
+          <div className="list">
             <ul>
               {allProducts.map((element, key) => (
                 <li key={key}>
-                  <span>
-                    <input type="checkbox" />
-                    {element.name}
-                    <input type="number" />%
-                  </span>
+                  <input type="checkbox" />
+                  <span>{element.name}</span>
+                  <input type="number" max={100} />%
                 </li>
               ))}
             </ul>
           </div>
         )}
       </div>
-      <div className="row flex">
+      <div className="row">
         <p>Change Password</p>
-        <input type="password" name="" id="" />
-        <input type="password" name="" id="" />
-        <button>Save</button>
+        <div className="flex password_row">
+          <input type="password" name="" id="" />
+          <input type="password" name="" id="" />
+          <button>Save</button>
+        </div>
       </div>
-      <div>
+      <div className="save_button">
         <button>Save</button>
       </div>
     </div>

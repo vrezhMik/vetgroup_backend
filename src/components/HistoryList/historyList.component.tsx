@@ -74,7 +74,10 @@ function HistoryList() {
   return (
     <div className={`${style.history}`}>
       <div className={`${style.historyTitle}`}>
-        <h1>Order History:</h1>
+        <h1>Users:</h1>
+      </div>
+      <div className={`${style.historyAddUser} flex`}>
+        <button>Add User</button>
       </div>
       <div className={`${style.historyElements}`}>
         {user.map((element, key) => (

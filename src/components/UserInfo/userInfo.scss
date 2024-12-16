@@ -19,3 +19,79 @@
     }
   }
 }
+
+.list_button {
+  button {
+    margin-right: 10px;
+  }
+}
+
+.list {
+  padding-left: 20px;
+  padding-top: 20px;
+  li {
+    margin-bottom: 8px;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    input {
+      border: 1px solid $theme-color-dark;
+      border-radius: 10px;
+      padding: 5px;
+    }
+  }
+}
+
+.password_row {
+  margin-top: 20px;
+  column-gap: 20px;
+  input {
+    width: 200px;
+    border: 1px solid $theme-color-dark;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: $theme-color-dark;
+    color: $theme-color-light;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+}
+
+.open {
+  svg {
+    transform: rotate(90deg);
+  }
+}
+
+.save_button {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    padding: 10px 20px;
+    background-color: $theme-color-dark;
+    color: $theme-color-light;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 780px) {
+  .password_row {
+    flex-direction: column;
+    row-gap: 20px;
+    input {
+      width: 100%;
+    }
+  }
+  .list {
+    padding-left: 0;
+    li {
+      input {
+        width: 30%;
+      }
+    }
+  }
+}
