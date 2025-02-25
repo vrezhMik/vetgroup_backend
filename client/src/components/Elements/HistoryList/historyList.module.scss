@@ -1,0 +1,39 @@
+@use "./../../../styles/variables" as variables;
+
+.history {
+  width: 90%;
+  margin: 0 auto;
+  &Title {
+    margin-bottom: 50px;
+    h1 {
+      color: variables.$theme-color-dark;
+    }
+  }
+  &Elements {
+    &Element {
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border-bottom: 1px solid variables.$theme-color-light;
+      justify-content: space-between;
+      p {
+        color: variables.$theme-color-dark;
+      }
+      button {
+        height: 30px;
+        width: 30px;
+        svg {
+          height: 100%;
+          width: 100%;
+          path {
+            fill: variables.$theme-color;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  .UserCompany {
+    display: none;
+  }
+}

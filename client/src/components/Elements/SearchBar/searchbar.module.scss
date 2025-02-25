@@ -1,0 +1,26 @@
+@use "./../../../styles/variables" as variables;
+
+.searchBar {
+  width: 100%;
+  column-gap: 20px;
+  align-items: center;
+  &Filters {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    &Filter {
+      background-color: variables.$theme-color;
+      border-radius: 10px;
+      align-items: center;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 5px;
+      span,
+      button {
+        color: variables.$theme-default-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@use "./../../../styles/variables" as variables;
+.mainMenu {
+  height: 100%;
+  width: 75%;
+  border-right: 1px solid variables.$theme-color-light;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  &Logo {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 60px;
+    a {
+      svg {
+        height: 100%;
+        width: 100%;
+        path {
+          fill: variables.$theme-color;
+        }
+      }
+    }
+  }
+  nav {
+    padding-left: 30px;
+
+    ul {
+      li {
+        margin-bottom: 20px;
+        button {
+          font-size: 17px;
+          color: variables.$theme-color-dark;
+          margin-bottom: 10px;
+          &:hover {
+            color: variables.$theme-color !important;
+          }
+        }
+      }
+    }
+    ol {
+      margin-left: 20px;
+      div {
+        margin-bottom: 10px;
+        align-items: center;
+        label {
+          color: variables.$theme-color-dark;
+          font-size: 18px;
+          margin-left: 10px;
+        }
+        input {
+          display: block;
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #000;
+          border-radius: 4px;
+          background-color: #fff;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+          &:checked {
+            background-color: variables.$theme-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.active {
+  color: variables.$theme-color !important;
+}
+
+@media (max-width: 1080px) {
+  .mainMenu {
+    display: none;
+  }
+}
