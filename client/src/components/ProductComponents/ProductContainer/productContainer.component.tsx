@@ -1,6 +1,6 @@
 "use client";
 import style from "./productContainer.module.scss";
-
+import { useData } from "@/context/DocumentContext";
 import { useEffect } from "react";
 import { useCart, useCard, useCardView } from "@/store/store";
 
@@ -94,6 +94,8 @@ export default function ProductContainer() {
   const { getItemCount } = useCart();
   const { cardState, setCardState } = useCard();
   const { cardViewState, setCardView } = useCardView();
+  const { data } = useData();
+  console.log(data);
 
   useEffect(
     () => () => {

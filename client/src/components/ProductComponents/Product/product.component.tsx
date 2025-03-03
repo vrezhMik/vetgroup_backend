@@ -5,7 +5,6 @@ import { useCart, useCard, useCardView } from "@/store/store";
 import { ProductPropsInterface } from "@/utils/Interfaces";
 import { CardView } from "@/utils/Types";
 import { Item } from "@/classes/ItemClass";
-// import { FileController } from "@/classes/FileController";
 
 import ImageComponent from "@/components/Elements/Image/image.component";
 import ArrowSVG from "@/components/Elements/Icons/ArrowSVG";
@@ -16,7 +15,6 @@ export default function Product({ data }: ProductPropsInterface) {
   const { addItem } = useCart();
   const { setCardView } = useCardView();
   const currentProduct = new Item(data);
-  // FileController.read_xlsx_file("./public/vet.xlsx");
 
   const increment = () => {
     currentProduct.setQty(quantity + 1);
@@ -36,8 +34,8 @@ export default function Product({ data }: ProductPropsInterface) {
     }
   };
 
-  const handleClick = (state: boolean, data: Item): void => {
-    setCardState(true);
+  const handleClick = (state: boolean): void => {
+    setCardState(state);
     setCurrentItem(currentProduct);
     setCardView(CardView.Product);
   };
@@ -52,7 +50,7 @@ export default function Product({ data }: ProductPropsInterface) {
       <div
         className={style.productImage}
         onClick={() => {
-          handleClick(true, currentProduct);
+          handleClick(true);
         }}
       >
         {currentProduct.hasSale() && (
