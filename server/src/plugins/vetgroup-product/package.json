@@ -1,7 +1,7 @@
 {
   "version": "0.0.0",
   "keywords": [],
-  "type": "module",
+  "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
     "./strapi-admin": {
@@ -31,38 +31,38 @@
     "test:ts:back": "run -T tsc -p server/tsconfig.json"
   },
   "dependencies": {
-    "@strapi/design-system": "^2.0.0-rc.14",
-    "@strapi/icons": "^2.0.0-rc.14",
-    "react-intl": "^7.0.4"
+    "@strapi/design-system": "^2.0.0-rc.18",
+    "@strapi/icons": "^2.0.0-rc.18",
+    "react-intl": "^7.1.6"
   },
   "devDependencies": {
-    "@strapi/strapi": "^5.6.0",
-    "@strapi/sdk-plugin": "^5.2.8",
-    "prettier": "^3.4.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.0",
-    "styled-components": "^6.1.13",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "@strapi/typescript-utils": "^5.6.0",
-    "typescript": "^5.7.2"
-  },
-  "peerDependencies": {
-    "@strapi/strapi": "^5.6.0",
-    "@strapi/sdk-plugin": "^5.2.8",
+    "@strapi/strapi": "^5.11.2",
+    "@strapi/sdk-plugin": "^5.3.2",
+    "prettier": "^3.5.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.1",
-    "styled-components": "^6.1.13"
+    "react-router-dom": "^6.30.0",
+    "styled-components": "^6.1.15",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@strapi/typescript-utils": "^5.11.2",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^5.11.2",
+    "@strapi/sdk-plugin": "^5.3.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.0",
+    "styled-components": "^6.1.15"
   },
   "strapi": {
     "kind": "plugin",
-    "name": "vetgroup",
-    "displayName": "vetgroup",
+    "name": "vetgroup-product",
+    "displayName": "VetGroup Products",
     "description": ""
   },
-  "name": "vetgroup",
+  "name": "vetgroup-product",
   "description": "",
   "license": "MIT",
   "author": "vrezhMikTumo <mikayelyan.vrezh99@gmail.com>"

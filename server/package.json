@@ -11,20 +11,26 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@strapi/helper-plugin": "^4.25.12",
     "@strapi/plugin-cloud": "5.6.0",
     "@strapi/plugin-graphql": "^5.6.0",
     "@strapi/plugin-users-permissions": "5.6.0",
     "@strapi/strapi": "5.6.0",
     "better-sqlite3": "11.3.0",
+    "csv-uploader": "file:./src/plugins/csv-uploader",
+    "iconv-lite": "^0.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
+    "styled-components": "^6.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/xlsx": "^0.0.35",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   },
   "engines": {
