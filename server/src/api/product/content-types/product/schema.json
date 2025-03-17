@@ -20,9 +20,6 @@
       "type": "string",
       "unique": false
     },
-    "price": {
-      "type": "string"
-    },
     "description": {
       "type": "text"
     },
@@ -36,6 +33,9 @@
         "videos",
         "audios"
       ]
+    },
+    "price": {
+      "type": "integer"
     }
   }
 }

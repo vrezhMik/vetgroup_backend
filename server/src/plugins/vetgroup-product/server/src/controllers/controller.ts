@@ -1,5 +1,4 @@
 import type { Core } from "@strapi/strapi";
-
 import fs from "fs";
 import * as XLSX from "xlsx";
 
@@ -7,6 +6,7 @@ const controller = ({ strapi }: { strapi: Core.Strapi }) => ({
   index(ctx) {
     ctx.body = { message: "Welcome to Vet Group Products API!" };
   },
+
   async uploadFile(ctx) {
     try {
       if (!ctx.request.files || !ctx.request.files.file) {
@@ -16,21 +16,72 @@ const controller = ({ strapi }: { strapi: Core.Strapi }) => ({
       const { file } = ctx.request.files;
       const filePath = file.filepath;
 
-      const fileBuffer = fs.readFileSync(filePath); //originalFilename
+      // Read file as buffer
+      const fileBuffer = fs.readFileSync(filePath);
 
-      const jsonData = readCsvFile(fileBuffer);
+      // Process CSV data
+      let jsonData = readCsvFile(fileBuffer);
+
+      if (!jsonData || jsonData.length === 0) {
+        return ctx.badRequest("CSV processing failed or empty file.");
+      }
+
+      // ✅ Remove all existing products before inserting new ones
+      await strapi.db.query("api::product.product").deleteMany({
+        where: {},
+      });
+
+      // ✅ Remove duplicates from jsonData before inserting
+      const uniqueProducts = [];
+      const seenCodes = new Set();
+
+      jsonData.forEach((product) => {
+        if (!seenCodes.has(product.code)) {
+          seenCodes.add(product.code);
+          uniqueProducts.push(product);
+        }
+      });
+
+      // ✅ Insert unique product entries
+      const createdProducts = await Promise.all(
+        uniqueProducts.map((product) =>
+          strapi.entityService.create("api::product.product", {
+            data: {
+              name: String(product.name),
+              code: String(product.code),
+              description: String(product.description),
+              price: String(product.price),
+              image: null, // No image available
+              publishedAt: new Date(), // ✅ Ensure it's published
+            },
+          }),
+        ),
+      );
 
       ctx.body = {
-        message: "File processed successfully!",
-        // data: jsonData,
+        message: "File processed and products stored successfully!",
+        total: createdProducts.length,
       };
     } catch (error) {
-      ctx.badRequest("File upload failed", { error });
+      ctx.badRequest("File upload or database operation failed", { error });
     }
   },
 });
 
 export default controller;
+
+function parsePrice(price: string): number {
+  if (!price) return 0;
+
+  // ✅ Step 1: Remove spaces ("9 000,00" → "9000,00")
+  let cleanPrice = price.toString().replace(/\s+/g, "");
+
+  // ✅ Step 2: Convert comma decimal separator to dot ("9000,00" → "9000.00")
+  cleanPrice = cleanPrice.replace(/,/g, ".");
+
+  // ✅ Step 3: Convert to a float and take the integer part
+  return Math.floor(parseFloat(cleanPrice)) || 0;
+}
 
 function readCsvFile(fileBuffer: Buffer): Record<string, any>[] | null {
   try {
@@ -38,21 +89,29 @@ function readCsvFile(fileBuffer: Buffer): Record<string, any>[] | null {
     const workbook = XLSX.read(decodedData, { type: "string" });
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
+
     // Convert to JSON
     const jsonData = XLSX.utils.sheet_to_json(sheet);
     let previousValidName: string | null = null;
+
     const transformedData = jsonData
       .map((row: any, index: number) => {
         const dynamicKey = Object.keys(row).find(
           (key) => !key.startsWith("__EMPTY"),
         );
+
         if (!dynamicKey) {
           console.warn("Skipping row: No valid dynamic key found.");
           return null;
         }
+
         let rawCode = row[dynamicKey];
         let rawDescription = row["__EMPTY_1"] || "";
-        let price = row["__EMPTY_12"];
+        let rawPrice = row["__EMPTY_12"] || "";
+
+        // ✅ Normalize price (convert to integer)
+        let price = parsePrice(rawPrice);
+
         if (
           typeof rawCode === "string" &&
           rawCode.includes(". ") &&
@@ -61,14 +120,18 @@ function readCsvFile(fileBuffer: Buffer): Record<string, any>[] | null {
           previousValidName = rawCode;
           return null;
         }
+
         if (!previousValidName && index === 0) {
           previousValidName = "A. Bonmascota";
         }
+
         let name = previousValidName || "Unknown";
+
         let cleanedDescription = rawDescription
           .replace(/^\S+\s+/, "")
           .replace(/\s*\d+([\s,]\d+)*$/g, "")
           .trim();
+
         return {
           name,
           code: rawCode,
@@ -77,7 +140,7 @@ function readCsvFile(fileBuffer: Buffer): Record<string, any>[] | null {
         };
       })
       .filter(Boolean);
-    console.log("Transformed CSV Data:", transformedData);
+
     return transformedData;
   } catch (error) {
     console.error("Error reading CSV file:", error);
