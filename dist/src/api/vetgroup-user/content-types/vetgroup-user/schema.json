@@ -1,0 +1,20 @@
+{
+    "kind": "collectionType",
+    "collectionName": "vetgroup_users",
+    "info": {
+        "singularName": "vetgroup-user",
+        "pluralName": "vetgroup-users",
+        "displayName": "Vetgroup User"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        }
+    }
+}
