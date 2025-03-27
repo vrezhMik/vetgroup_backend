@@ -32,6 +32,10 @@
     },
     "products_json": {
       "type": "json"
+    },
+    "complited": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

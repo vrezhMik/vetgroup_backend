@@ -72,14 +72,8 @@ export default controller;
 
 function parsePrice(price: string): number {
   if (!price) return 0;
-
-  // ✅ Step 1: Remove spaces ("9 000,00" → "9000,00")
   let cleanPrice = price.toString().replace(/\s+/g, "");
-
-  // ✅ Step 2: Convert comma decimal separator to dot ("9000,00" → "9000.00")
   cleanPrice = cleanPrice.replace(/,/g, ".");
-
-  // ✅ Step 3: Convert to a float and take the integer part
   return Math.floor(parseFloat(cleanPrice)) || 0;
 }
 
@@ -90,7 +84,6 @@ function readCsvFile(fileBuffer: Buffer): Record<string, any>[] | null {
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
 
-    // Convert to JSON
     const jsonData = XLSX.utils.sheet_to_json(sheet);
     let previousValidName: string | null = null;
 
@@ -109,7 +102,6 @@ function readCsvFile(fileBuffer: Buffer): Record<string, any>[] | null {
         let rawDescription = row["__EMPTY_1"] || "";
         let rawPrice = row["__EMPTY_12"] || "";
 
-        // ✅ Normalize price (convert to integer)
         let price = parsePrice(rawPrice);
 
         if (

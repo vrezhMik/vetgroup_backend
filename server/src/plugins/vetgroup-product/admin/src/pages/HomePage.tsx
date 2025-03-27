@@ -16,7 +16,6 @@ const HomePage = () => {
     }
   };
 
-  // Function to upload file to backend
   const handleUpload = async () => {
     if (!file) {
       setMessage("Please select a file first.");
@@ -57,7 +56,6 @@ const HomePage = () => {
           Welcome to {formatMessage({ id: getTranslation("plugin.name") })}
         </Typography>
 
-        {/* Native File Input inside a Box */}
         <Box paddingTop={4}>
           <input
             type="file"
