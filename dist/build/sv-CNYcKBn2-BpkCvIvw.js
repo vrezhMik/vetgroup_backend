@@ -1,0 +1,1 @@
+const t={"plugin.description.long":"Lägger till en GraphQL-rutt med standard API-metoder.","plugin.description.short":"Lägger till en GraphQL-rutt med standard API-metoder.","plugin.name":"GraphQL"};export{t as default};
