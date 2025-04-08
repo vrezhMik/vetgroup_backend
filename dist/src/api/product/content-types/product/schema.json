@@ -36,6 +36,12 @@
         },
         "price": {
             "type": "integer"
+        },
+        "category": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::category.category",
+            "inversedBy": "products"
         }
     }
 }

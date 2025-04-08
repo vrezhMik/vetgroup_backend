@@ -42,24 +42,36 @@ const controller = ({ strapi }: { strapi: Core.Strapi }) => ({
         }
       });
 
-      // ✅ Insert unique product entries
+      const allCategories = await strapi.entityService.findMany(
+        "api::category.category",
+        { fields: ["id", "title"] },
+      );
+
+      const categoryMap = new Map(
+        allCategories.map((cat) => [cat.title.trim(), cat.id]),
+      );
+
       const createdProducts = await Promise.all(
-        uniqueProducts.map((product) =>
-          strapi.entityService.create("api::product.product", {
+        uniqueProducts.map((product) => {
+          const matchedCategoryId =
+            categoryMap.get(product.name.trim()) ?? null;
+
+          return strapi.entityService.create("api::product.product", {
             data: {
               name: String(product.name),
               code: String(product.code),
               description: String(product.description),
               price: String(product.price),
-              image: null, // No image available
-              publishedAt: new Date(), // ✅ Ensure it's published
+              image: null,
+              publishedAt: new Date(),
+              category: matchedCategoryId,
             },
-          }),
-        ),
+          });
+        }),
       );
 
       ctx.body = {
-        message: "File processed and products stored successfully!",
+        message: `File processed and products stored successfully!`,
         total: createdProducts.length,
       };
     } catch (error) {

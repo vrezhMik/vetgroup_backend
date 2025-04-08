@@ -73,6 +73,15 @@
         },
         "last_name": {
             "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "code": {
+            "type": "string"
+        },
+        "user_id": {
+            "type": "string"
         }
     }
 }
