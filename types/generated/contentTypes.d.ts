@@ -445,6 +445,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    backendId: Schema.Attribute.UID;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     code: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
@@ -461,6 +462,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     price: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
+    stock: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

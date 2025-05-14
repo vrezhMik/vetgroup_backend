@@ -42,6 +42,12 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "backendId": {
+      "type": "uid"
+    },
+    "stock": {
+      "type": "integer"
     }
   }
 }
