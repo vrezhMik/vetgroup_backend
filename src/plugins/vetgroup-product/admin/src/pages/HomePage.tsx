@@ -53,7 +53,11 @@ const HomePage = () => {
     <Main>
       <Box padding={6}>
         <Typography variant="alpha">
-          Welcome to {formatMessage({ id: getTranslation("plugin.name") })}
+          Welcome to{" "}
+          {formatMessage({
+            id: getTranslation("plugin.name"),
+            defaultMessage: "VetGroup Product Sync",
+          })}
         </Typography>
 
         <Box paddingTop={4}>
@@ -65,20 +69,39 @@ const HomePage = () => {
           />
         </Box>
 
-        {/* Upload Button */}
         <Box paddingTop={4}>
           <Button onClick={handleUpload} loading={uploading}>
             Upload
           </Button>
         </Box>
 
-        {/* Message Display */}
         {message && (
           <Box paddingTop={4}>
             <Typography variant="epsilon">{message}</Typography>
           </Box>
         )}
       </Box>
+      <Button
+        variant="secondary"
+        onClick={async () => {
+          setUploading(true);
+          setMessage("");
+          try {
+            const res = await fetch("/api/vetgroup-product/sync", {
+              method: "GET",
+            });
+
+            const data = await res.json();
+            setMessage(data.message || "Sync completed successfully");
+          } catch (err) {
+            setMessage("Sync failed: " + err);
+          } finally {
+            setUploading(false);
+          }
+        }}
+      >
+        Sync with 1C
+      </Button>
     </Main>
   );
 };

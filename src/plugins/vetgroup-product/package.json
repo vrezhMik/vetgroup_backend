@@ -12,8 +12,8 @@
       "default": "./dist/admin/index.js"
     },
     "./strapi-server": {
-      "types": "./dist/server/src/index.d.ts",
-      "source": "./server/src/index.ts",
+      "types": "./dist/server/index.d.ts",
+      "source": "./server/index.ts",
       "import": "./dist/server/index.mjs",
       "require": "./dist/server/index.js",
       "default": "./dist/server/index.js"

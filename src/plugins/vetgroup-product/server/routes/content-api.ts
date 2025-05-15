@@ -2,7 +2,6 @@ export default [
   {
     method: "GET",
     path: "/",
-    // name of the controller file & the method.
     handler: "controller.index",
     config: {
       policies: [],
@@ -11,7 +10,15 @@ export default [
   {
     method: "POST",
     path: "/upload",
-    handler: "plugin::vetgroup-product.controller.uploadFile", // ✅ Correct controller reference
+    handler: "plugin::vetgroup-product.controller.uploadFile",
+    config: {
+      policies: [],
+    },
+  },
+  {
+    method: "GET",
+    path: "/sync",
+    handler: "plugin::vetgroup-product.syncController.syncWith1C",
     config: {
       policies: [],
     },
