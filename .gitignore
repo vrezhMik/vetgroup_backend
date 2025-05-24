@@ -45,3 +45,4 @@ database/*.sqlite
 
 .env
 
+public/uploads/*
