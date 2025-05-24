@@ -17,17 +17,20 @@ export default ({ strapi }) => ({
     let createdCount = 0;
     let updatedCount = 0;
 
+    const categories = await strapi.db
+      .query("api::category.category")
+      .findMany({ select: ["id", "title"] });
+
     for (const item of items) {
-      const catalogName = item.CatalogName;
-      const categoryName = catalogName?.split(" ")[0]?.trim() || "Other";
+      const catalogName = item.CatalogName || "";
 
-      const category = await strapi.db
-        .query("api::category.category")
-        .findOne({ where: { title: categoryName } });
+      const matchedCategory = categories.find((cat) =>
+        catalogName.toLowerCase().includes(cat.title.toLowerCase()),
+      );
 
-      const fallbackCategory = await strapi.db
-        .query("api::category.category")
-        .findOne({ where: { title: "Other" } });
+      const fallbackCategory = categories.find(
+        (cat) => cat.title.toLowerCase() === "other",
+      );
 
       const payload = {
         name: catalogName,
@@ -36,7 +39,7 @@ export default ({ strapi }) => ({
         backendId: item.ID,
         stock: parseInt(item.Stock.replace(",", "."), 10) || 0,
         price: parseFloat(item.Price.replace(",", ".")) || 0,
-        category: category?.id || fallbackCategory?.id,
+        category: matchedCategory?.id || fallbackCategory?.id,
       };
 
       const existing = await strapi.db
