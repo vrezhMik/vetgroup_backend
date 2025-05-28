@@ -21,9 +21,7 @@ const plugin = {
     // ✅ The key fix:
     app.registerPlugin({
       id: PLUGIN_ID,
-      initializer: ({ setPlugin }: { setPlugin: (id: string) => void }) => (
-        <Initializer setPlugin={setPlugin} />
-      ),
+      // initializer: Initializer,
       isReady: false,
       name: PLUGIN_ID,
     });
