@@ -3,7 +3,7 @@ import axios from "axios";
 export default ({ strapi }) => ({
   async syncItems() {
     const { data } = await axios.get(
-      "http://87.241.165.71:8081/vet/hs/Eportal/GET_ITEMS",
+      "http://87.241.165.71:8081/web/hs/Eportal/GET_ITEMS",
       {
         auth: {
           username: "001",
@@ -37,9 +37,12 @@ export default ({ strapi }) => ({
         code: item.Articul,
         description: item.Name,
         backendId: item.ID,
-        stock: parseInt(item.Stock.replace(",", "."), 10) || 0,
-        price: parseFloat(item.Price.replace(",", ".")) || 0,
+        stock: item.Stock ? parseInt(item.Stock.replace(",", "."), 10) : 0,
+        price: item.Price ? parseFloat(item.Price.replace(",", ".")) : 0,
         category: matchedCategory?.id || fallbackCategory?.id,
+        pack_price: item.pack_price
+          ? parseInt(item.pack_price.replace(",", "."))
+          : 0,
       };
 
       const existing = await strapi.db

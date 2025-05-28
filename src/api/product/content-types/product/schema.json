@@ -35,7 +35,7 @@
       ]
     },
     "price": {
-      "type": "integer"
+      "type": "decimal"
     },
     "category": {
       "type": "relation",
@@ -48,6 +48,9 @@
     },
     "stock": {
       "type": "integer"
+    },
+    "pack_price": {
+      "type": "decimal"
     }
   }
 }
