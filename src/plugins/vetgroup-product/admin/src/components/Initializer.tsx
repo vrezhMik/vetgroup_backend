@@ -1,19 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from "react";
+import { PLUGIN_ID } from "../pluginId";
 
-import { PLUGIN_ID } from '../pluginId';
-
-type InitializerProps = {
-  setPlugin: (id: string) => void;
-};
-
-const Initializer = ({ setPlugin }: InitializerProps) => {
-  const ref = useRef(setPlugin);
-
+const Initializer = ({ setPlugin }: { setPlugin: (id: string) => void }) => {
   useEffect(() => {
-    ref.current(PLUGIN_ID);
-  }, []);
+    setPlugin(PLUGIN_ID);
+  }, [setPlugin]); // add to deps just in case
 
   return null;
 };
 
-export { Initializer };
+export default Initializer;
