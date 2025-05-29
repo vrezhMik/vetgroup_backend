@@ -46,3 +46,9 @@ database/*.sqlite
 .env
 
 # public/uploads/*
+
+
+!build/
+
+
+!src/plugins/**/dist/
