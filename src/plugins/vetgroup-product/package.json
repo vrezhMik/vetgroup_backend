@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.18",
+    "@strapi/helper-plugin": "^4.25.12",
     "@strapi/icons": "^2.0.0-rc.18",
     "react-intl": "^7.1.6",
     "xlsx": "^0.18.5"

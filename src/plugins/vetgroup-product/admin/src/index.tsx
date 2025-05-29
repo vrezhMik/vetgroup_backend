@@ -1,4 +1,3 @@
-import { getTranslation } from "./utils/getTranslation";
 import { PLUGIN_ID } from "./pluginId";
 import Initializer from "./components/Initializer";
 import { PluginIcon } from "./components/PluginIcon";
@@ -13,15 +12,14 @@ const plugin = {
         defaultMessage: PLUGIN_ID,
       },
       Component: async () => {
-        const { App } = await import("./pages/App");
-        return App;
+        const component = await import("./pages/App");
+        return component.default;
       },
     });
 
-    // ✅ The key fix:
     app.registerPlugin({
       id: PLUGIN_ID,
-      // initializer: Initializer,
+      initializer: Initializer,
       isReady: false,
       name: PLUGIN_ID,
     });
