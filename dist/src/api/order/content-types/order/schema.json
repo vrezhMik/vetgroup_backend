@@ -1,0 +1,41 @@
+{
+    "kind": "collectionType",
+    "collectionName": "orders",
+    "info": {
+        "singularName": "order",
+        "pluralName": "orders",
+        "displayName": "Order",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "order_id": {
+            "type": "string",
+            "unique": true
+        },
+        "created": {
+            "type": "datetime"
+        },
+        "total": {
+            "type": "decimal"
+        },
+        "products": {
+            "type": "richtext"
+        },
+        "users_permissions_user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        },
+        "products_json": {
+            "type": "json"
+        },
+        "complited": {
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
