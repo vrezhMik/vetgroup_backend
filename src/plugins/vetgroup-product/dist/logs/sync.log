@@ -263,3 +263,11 @@
 - Created: 0
 - Updated: 1104
 - Skipped (no category match or missing code/catalog name): 245
+[2025-06-13T20:50:33.230Z] SUCCESS - Sync complete: Sync with 1C completed successfully. Created: 0, Updated: 1349
+[2025-06-13T20:50:33.235Z] FAIL - Cannot read properties of undefined (reading 'publishAll')
+[2025-06-13T20:57:53.716Z] SUCCESS - Sync complete: Sync with 1C completed successfully. Created: 0, Updated: 1349
+[2025-06-13T20:58:18.988Z] SUCCESS - ✅ Published 1500 products.
+[2025-06-13T20:58:18.994Z] SUCCESS - Database backed up to /var/www/html/vetgroup_backend/.tmp/data_2025-06-13-20-58-18.db
+[2025-06-13T21:01:40.519Z] SUCCESS - Sync complete: Sync with 1C completed successfully. Created: 0, Updated: 1349
+[2025-06-13T21:02:01.253Z] SUCCESS - ✅ Published 1500 products.
+[2025-06-13T21:02:01.259Z] SUCCESS - Database backed up to /var/www/html/vetgroup_backend/.tmp/data_2025-06-13-21-02-01.db

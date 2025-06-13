@@ -38,26 +38,54 @@ if (!fs.existsSync(logDir)) {
 const logSync = (status, message) => {
     const timestamp = new Date().toISOString();
     const entry = `[${timestamp}] ${status.toUpperCase()} - ${message}\n`;
-    fs.appendFile(logFilePath, entry, (err) => {
-        if (err)
-            console.error("❌ Failed to write log:", err);
-    });
+    fs.appendFileSync(logFilePath, entry);
 };
 exports.default = async ({ strapi }) => {
     const task = async () => {
         try {
-            console.log("🌙 Midnight cron sync started");
-            const message = await strapi
+            console.log("⏰ Cron task started");
+            // 1. Sync items
+            const syncMessage = await strapi
                 .plugin("vetgroup-product")
                 .service("syncService")
                 .syncItems();
-            logSync("success", message);
+            logSync("success", `Sync complete: ${syncMessage}`);
+            // 2. Inline publish logic
+            const products = await strapi.db
+                .query("api::product.product")
+                .findMany({
+                select: ["id"],
+                where: { publishedAt: null },
+            });
+            let count = 0;
+            for (const product of products) {
+                try {
+                    await strapi.entityService.update("api::product.product", product.id, {
+                        data: {
+                            publishedAt: new Date().toISOString(),
+                        },
+                    });
+                    count++;
+                }
+                catch (err) {
+                    strapi.log.warn(`❌ Failed to publish product ${product.id}: ${err.message}`);
+                }
+            }
+            logSync("success", `✅ Published ${count} products.`);
+            // 3. Backup DB
+            const dbFile = "/var/www/html/vetgroup_backend/.tmp/data.db";
+            const timestamp = new Date().toISOString().replace(/[:T]/g, "-").split(".")[0];
+            const backupFile = `/var/www/html/vetgroup_backend/.tmp/data_${timestamp}.db`;
+            fs.copyFileSync(dbFile, backupFile);
+            logSync("success", `Database backed up to ${backupFile}`);
         }
         catch (err) {
-            console.error("❌ Midnight cron sync error:", err);
-            logSync("fail", err.message);
+            console.error("❌ Cron error:", err);
+            logSync("fail", err.message || "Unknown error");
         }
     };
-    // ⏰ Run every day at 12:00 AM
+    // Run every 5 minutes
     node_cron_1.default.schedule("0 * * * *", task);
+    // Optional: run once on startup for testing
+    await task();
 };
