@@ -5,7 +5,8 @@ export default ({ strapi }) => ({
     const products = await strapi.db
       .query("api::product.product")
       .findMany({
-        select: ["id", "publishedAt"],
+        select: ["id"],
+        where: { publishedAt: null },
       });
 
     let count = 0;
