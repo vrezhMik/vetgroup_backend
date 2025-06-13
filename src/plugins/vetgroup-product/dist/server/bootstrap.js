@@ -1,4 +1,5 @@
 "use strict";
+// path: src/plugins/vetgroup-product/server/bootstrap.ts
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -31,7 +32,8 @@ const path = __importStar(require("path"));
 const node_cron_1 = __importDefault(require("node-cron"));
 const logDir = path.resolve(__dirname, "../logs");
 const logFilePath = path.join(logDir, "sync.log");
-// Ensure log folder exists
+const tmpDir = "/var/www/html/vetgroup_backend/.tmp";
+const dbFile = path.join(tmpDir, "data.db");
 if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir, { recursive: true });
 }
@@ -72,20 +74,28 @@ exports.default = async ({ strapi }) => {
                 }
             }
             logSync("success", `✅ Published ${count} products.`);
-            // 3. Backup DB
-            const dbFile = "/var/www/html/vetgroup_backend/.tmp/data.db";
-            const timestamp = new Date().toISOString().replace(/[:T]/g, "-").split(".")[0];
-            const backupFile = `/var/www/html/vetgroup_backend/.tmp/data_${timestamp}.db`;
-            fs.copyFileSync(dbFile, backupFile);
-            logSync("success", `Database backed up to ${backupFile}`);
+            // 3. Backup DB — only one `temp_data_*.db` at a time
+            const timestamp = new Date().toISOString().replace(/[:T]/g, "-").split(".")[0]; // e.g. 2025-06-13-20-00-00
+            const backupName = `temp_data_${timestamp}.db`;
+            const backupPath = path.join(tmpDir, backupName);
+            // Remove previous temp_data_*.db files
+            const files = fs.readdirSync(tmpDir);
+            for (const file of files) {
+                if (file.startsWith("temp_data_") && file.endsWith(".db")) {
+                    fs.unlinkSync(path.join(tmpDir, file));
+                }
+            }
+            // Create new backup
+            fs.copyFileSync(dbFile, backupPath);
+            logSync("success", `Database backed up to ${backupPath}`);
         }
         catch (err) {
             console.error("❌ Cron error:", err);
             logSync("fail", err.message || "Unknown error");
         }
     };
-    // Run every 5 minutes
+    // Run every hour
     node_cron_1.default.schedule("0 * * * *", task);
-    // Optional: run once on startup for testing
+    // Optional immediate run
     await task();
 };

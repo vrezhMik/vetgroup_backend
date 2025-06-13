@@ -1,3 +1,5 @@
+// path: src/plugins/vetgroup-product/server/bootstrap.ts
+
 import type { Core } from "@strapi/strapi";
 import * as fs from "fs";
 import * as path from "path";
@@ -5,8 +7,9 @@ import cron from "node-cron";
 
 const logDir = path.resolve(__dirname, "../logs");
 const logFilePath = path.join(logDir, "sync.log");
+const tmpDir = "/var/www/html/vetgroup_backend/.tmp";
+const dbFile = path.join(tmpDir, "data.db");
 
-// Ensure log folder exists
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir, { recursive: true });
 }
@@ -43,7 +46,7 @@ export default async ({ strapi }: { strapi: Core.Strapi }) => {
           await strapi.entityService.update("api::product.product", product.id, {
             data: {
               publishedAt: new Date().toISOString(),
-            }as any,
+            } as any,
           });
           count++;
         } catch (err) {
@@ -53,22 +56,31 @@ export default async ({ strapi }: { strapi: Core.Strapi }) => {
 
       logSync("success", `✅ Published ${count} products.`);
 
-      // 3. Backup DB
-      const dbFile = "/var/www/html/vetgroup_backend/.tmp/data.db";
-      const timestamp = new Date().toISOString().replace(/[:T]/g, "-").split(".")[0];
-      const backupFile = `/var/www/html/vetgroup_backend/.tmp/data_${timestamp}.db`;
+      // 3. Backup DB — only one `temp_data_*.db` at a time
+      const timestamp = new Date().toISOString().replace(/[:T]/g, "-").split(".")[0]; // e.g. 2025-06-13-20-00-00
+      const backupName = `temp_data_${timestamp}.db`;
+      const backupPath = path.join(tmpDir, backupName);
 
-      fs.copyFileSync(dbFile, backupFile);
-      logSync("success", `Database backed up to ${backupFile}`);
+      // Remove previous temp_data_*.db files
+      const files = fs.readdirSync(tmpDir);
+      for (const file of files) {
+        if (file.startsWith("temp_data_") && file.endsWith(".db")) {
+          fs.unlinkSync(path.join(tmpDir, file));
+        }
+      }
+
+      // Create new backup
+      fs.copyFileSync(dbFile, backupPath);
+      logSync("success", `Database backed up to ${backupPath}`);
     } catch (err: any) {
       console.error("❌ Cron error:", err);
       logSync("fail", err.message || "Unknown error");
     }
   };
 
-  // Run every 5 minutes
-cron.schedule("0 * * * *", task);
+  // Run every hour
+  cron.schedule("0 * * * *", task);
 
-  // Optional: run once on startup for testing
+  // Optional immediate run
   await task();
 };
