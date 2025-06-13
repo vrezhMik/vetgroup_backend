@@ -1,16 +1,32 @@
 export default [
   "strapi::logger",
   "strapi::errors",
-  "strapi::security",
   {
-    name: "strapi::cors",
+    name: "strapi::security",
     config: {
-      origin: ["http://142.93.135.122:3000"], // Add your frontend's URL here
-      methods: ["GET", "POST", "PUT", "DELETE"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-      credentials: true, // Allow cookies (if needed)
+      contentSecurityPolicy: false,
     },
   },
+{
+  name: "strapi::cors",
+  config: {
+    origin: (ctx) => {
+  const allowedOrigins = [
+    "https://vetgroup.am",
+    "https://www.vetgroup.am",
+    "http://localhost:3000",
+    "http://142.93.135.122:3000",
+    "https://studio.apollographql.com",
+    "https://sandbox.embed.apollographql.com",
+  ];
+  const requestOrigin = ctx.request.header.origin;
+  console.log("🚀 Request origin:", requestOrigin); // ← ADD THIS LINE
+  return allowedOrigins.includes(requestOrigin) ? requestOrigin : false;
+},
+    credentials: true,
+  },
+},
+
   "strapi::poweredBy",
   "strapi::query",
   "strapi::body",

@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["server/index.ts", "server/**/*.ts"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx"],
+  "compilerOptions": {
+    "rootDir": "server",
+    "outDir": "dist/server",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "module": "CommonJS",
+    "target": "ES2020",
+    "moduleResolution": "Node",
+    "esModuleInterop": true
+  }
+}

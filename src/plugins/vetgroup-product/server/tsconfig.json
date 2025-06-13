@@ -1,8 +1,14 @@
 {
-  "extends": "@strapi/typescript-utils/tsconfigs/server",
-  "include": ["."],
+  "extends": "../tsconfig.json",
+  "include": ["./**/*.ts", "../custom.d.ts"],
   "compilerOptions": {
-    "rootDir": "../",
-    "baseUrl": "."
+    "outDir": "../dist/server",
+    "rootDir": ".",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "target": "ES2020",
+    "skipLibCheck": true
   }
 }

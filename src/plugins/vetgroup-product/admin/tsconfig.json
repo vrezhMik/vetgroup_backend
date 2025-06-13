@@ -1,8 +1,16 @@
 {
   "extends": "@strapi/typescript-utils/tsconfigs/admin",
-  "include": ["./src", "./custom.d.ts"],
+  "include": ["src", "custom.d.ts"],
   "compilerOptions": {
-    "rootDir": "../",
-    "baseUrl": "."
+    "rootDir": "src",
+    "outDir": "../dist/admin",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ES2020",
+    "jsx": "react",
+    "esModuleInterop": true
   }
 }

@@ -14,6 +14,9 @@
     "title": {
       "type": "string"
     },
+    "priority":{
+      "type":"integer"
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",

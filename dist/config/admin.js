@@ -16,4 +16,9 @@ exports.default = ({ env }) => ({
         nps: env.bool('FLAG_NPS', true),
         promoteEE: env.bool('FLAG_PROMOTE_EE', true),
     },
+    app: {
+        keys: env.array('APP_KEYS'),
+    },
+    path: '/admin',
+    url: '/admin',
 });

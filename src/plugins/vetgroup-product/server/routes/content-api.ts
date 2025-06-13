@@ -23,4 +23,13 @@ export default [
       policies: [],
     },
   },
+  {
+    method: "POST",
+    path: "/publish-other",
+    handler: "publish.publishOther",
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
 ];

@@ -102,6 +102,15 @@ const HomePage = () => {
       >
         Sync with 1C
       </Button>
+      <Button
+  variant="default"
+  onClick={async () => {
+    await fetch("/api/vetgroup-product/publish-other", { method: "POST" });
+    alert("✅ Published all 'Other' products");
+  }}
+>
+  Publish 'Other' Products
+</Button>
     </Main>
   );
 };

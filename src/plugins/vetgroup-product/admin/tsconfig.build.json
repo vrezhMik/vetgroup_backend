@@ -1,10 +1,14 @@
 {
-  "extends": "./tsconfig",
-  "include": ["./src", "./custom.d.ts"],
+  "extends": "./tsconfig.json",
+  "include": ["src/index.tsx", "custom.d.ts"],
   "exclude": ["**/*.test.ts", "**/*.test.tsx"],
   "compilerOptions": {
-    "rootDir": "../",
-    "baseUrl": ".",
-    "outDir": "./dist"
+    "rootDir": "src",
+    "outDir": "../dist/admin",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "module": "ESNext",
+    "moduleResolution": "Node"
   }
 }

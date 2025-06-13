@@ -1,0 +1,265 @@
+[2025-06-02T00:01:12.947Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 2171
+- Assigned to "Other": 1072
+[2025-06-03T00:01:14.749Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 2171
+- Assigned to "Other": 940
+[2025-06-04T00:01:15.831Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 2171
+- Assigned to "Other": 940
+[2025-06-05T00:00:59.547Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 2171
+- Assigned to "Other": 940
+[2025-06-06T00:00:42.457Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 939
+[2025-06-07T00:00:54.460Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 939
+[2025-06-08T00:01:03.359Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 939
+[2025-06-09T00:00:46.136Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 939
+[2025-06-10T00:00:42.471Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 939
+[2025-06-11T00:00:49.301Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 22
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 939
+[2025-06-11T08:00:35.254Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T09:00:35.838Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T10:00:36.372Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T11:02:13.500Z] FAIL - connect ETIMEDOUT 87.241.165.71:8081
+[2025-06-11T12:02:13.887Z] FAIL - connect ETIMEDOUT 87.241.165.71:8081
+[2025-06-11T13:02:14.264Z] FAIL - connect ETIMEDOUT 87.241.165.71:8081
+[2025-06-11T14:02:14.646Z] FAIL - connect ETIMEDOUT 87.241.165.71:8081
+[2025-06-11T15:02:15.032Z] FAIL - connect ETIMEDOUT 87.241.165.71:8081
+[2025-06-11T16:00:36.255Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T17:00:33.721Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T18:00:55.616Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T19:00:40.472Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T20:00:33.716Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T21:00:34.537Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T22:00:43.758Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-11T23:00:36.131Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T00:00:47.550Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T01:00:38.255Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T02:00:39.495Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T03:00:39.910Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T04:00:51.219Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T05:00:44.854Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T06:00:39.768Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T07:00:38.514Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T08:00:47.682Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T09:00:44.250Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 5
+- Updated: 1232
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T10:00:38.542Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T11:00:49.975Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T12:00:55.215Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T13:00:52.949Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T14:00:51.024Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T15:00:38.969Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T16:00:43.944Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T17:00:41.708Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T18:00:41.529Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T19:00:42.373Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T20:00:43.265Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T21:00:39.309Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T22:00:44.467Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-12T23:00:37.085Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T00:00:53.774Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T01:00:37.636Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T02:00:42.597Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T03:00:39.299Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T04:00:45.691Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T05:00:52.703Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T06:00:44.669Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T07:00:41.525Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T08:00:43.349Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 2
+- Updated: 1237
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T09:00:41.407Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1214
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T10:00:39.300Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T11:00:32.580Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T12:00:35.316Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T13:00:36.046Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T14:00:35.780Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T15:00:32.617Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T16:00:36.271Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T17:00:36.446Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T18:00:38.136Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1110
+- Skipped (no category match or empty CatalogName): 239
+[2025-06-13T19:00:32.909Z] SUCCESS - ✅ Sync with 1C completed successfully.
+- Created: 0
+- Updated: 1104
+- Skipped (no category match or missing code/catalog name): 245

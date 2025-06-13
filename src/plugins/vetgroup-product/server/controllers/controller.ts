@@ -1,5 +1,6 @@
 import type { Core } from "@strapi/strapi";
-import fs from "fs";
+import * as fs from "fs"; // ✅ correct for CommonJS
+
 import * as XLSX from "xlsx";
 
 const controller = ({ strapi }: { strapi: Core.Strapi }) => ({
