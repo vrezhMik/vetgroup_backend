@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const controller_1 = __importDefault(require("./controller"));
 const sync_controller_1 = __importDefault(require("./sync-controller"));
 const publish_1 = __importDefault(require("./publish"));
+const update_1 = __importDefault(require("./update"));
 exports.default = {
     controller: controller_1.default,
     syncController: sync_controller_1.default,
-    publish: publish_1.default
+    publish: publish_1.default,
+    update: update_1.default
 };

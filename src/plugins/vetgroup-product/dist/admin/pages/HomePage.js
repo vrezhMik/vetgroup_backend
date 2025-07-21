@@ -81,8 +81,7 @@ const HomePage = () => {
                     defaultMessage: "VetGroup Product Sync",
                 })),
             React.createElement(Box, { paddingTop: 4, display: "flex", gap: 4 },
-                React.createElement(Button, { onClick: handleSync, loading: uploading }, "Sync with 1C"),
-                React.createElement(Button, { onClick: handlePublish, loading: uploading }, "Publish Products")),
+                React.createElement(Button, { onClick: handleSync, loading: uploading }, "Sync with 1C")),
             message && (React.createElement(Box, { paddingTop: 4 },
                 React.createElement(Typography, { variant: "epsilon" }, message))))));
 };

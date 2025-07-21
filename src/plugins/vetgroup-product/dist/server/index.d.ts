@@ -27,6 +27,11 @@ declare const _default: {
         }) => {
             publishOther(ctx: any): Promise<void>;
         };
+        update: ({ strapi }: {
+            strapi: any;
+        }) => {
+            update(ctx: any): Promise<void>;
+        };
     };
     routes: {
         'content-api': {
@@ -56,11 +61,7 @@ declare const _default: {
         }) => {
             getWelcomeMessage(): string;
         };
-        syncService: ({ strapi }: {
-            strapi: any;
-        }) => {
-            syncItems(): Promise<string>;
-        };
+        syncService: typeof import("./services/sync-service");
     };
     contentTypes: {};
     policies: {};

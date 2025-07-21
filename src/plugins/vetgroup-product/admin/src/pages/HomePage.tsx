@@ -5,47 +5,8 @@ import { getTranslation } from "../utils/getTranslation";
 
 const HomePage = () => {
   const { formatMessage } = useIntl();
-  // const [file, setFile] = useState<File | null>(null); // File upload disabled
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
-
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     setFile(event.target.files[0]);
-  //   }
-  // };
-
-  // const handleUpload = async () => {
-  //   if (!file) {
-  //     setMessage("Please select a file first.");
-  //     return;
-  //   }
-
-  //   setUploading(true);
-  //   setMessage("");
-
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-
-  //   try {
-  //     const response = await fetch("/api/vetgroup-product/upload", {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("Upload failed");
-  //     }
-
-  //     const result = await response.json();
-  //     setMessage(result.message || "File uploaded successfully!");
-  //   } catch (error) {
-  //     setMessage(`Error uploading file. Please try again. ${error}`);
-  //   } finally {
-  //     setUploading(false);
-  //   }
-  // };
-
   const handleSync = async () => {
     setUploading(true);
     setMessage("");
@@ -62,21 +23,7 @@ const HomePage = () => {
     }
   };
 
-  const handlePublish = async () => {
-    setUploading(true);
-    setMessage("");
-    try {
-      const res = await fetch("/api/vetgroup-product/publish-other", {
-        method: "POST",
-      });
-      const data = await res.json();
-      setMessage(data.message || "Publish completed successfully");
-    } catch (err) {
-      setMessage("Publish failed: " + err);
-    } finally {
-      setUploading(false);
-    }
-  };
+
 
   return (
     <Main>
@@ -89,30 +36,13 @@ const HomePage = () => {
           })}
         </Typography>
 
-        {/* 
-        <Box paddingTop={4}>
-          <input
-            type="file"
-            accept=".csv"
-            onChange={handleFileChange}
-            disabled={uploading}
-          />
-        </Box>
-
-        <Box paddingTop={4}>
-          <Button onClick={handleUpload} loading={uploading}>
-            Upload
-          </Button>
-        </Box>
-        */}
+       
 
         <Box paddingTop={4} display="flex" gap={4}>
           <Button onClick={handleSync} loading={uploading}>
             Sync with 1C
           </Button>
-          <Button onClick={handlePublish} loading={uploading}>
-            Publish Products
-          </Button>
+         
         </Box>
 
         {message && (

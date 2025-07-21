@@ -1,4 +1,4 @@
-declare const _default: {
+declare const syncController: {
     syncWith1C(ctx: any): Promise<void>;
 };
-export default _default;
+export default syncController;

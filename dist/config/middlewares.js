@@ -7,6 +7,9 @@ exports.default = [
         name: "strapi::security",
         config: {
             contentSecurityPolicy: false,
+            rateLimit: {
+                enabled: false, // 🔥 Disable rate limit
+            },
         },
     },
     {

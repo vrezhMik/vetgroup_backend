@@ -26,12 +26,20 @@ exports.default = [
         },
     },
     {
+        method: "PUT",
+        path: "/:id",
+        handler: "update.update",
+        config: {
+            policies: [],
+        },
+    },
+    {
         method: "POST",
         path: "/publish-other",
-        handler: "publish.publishOther",
+        handler: "plugin::vetgroup-product.publish.publishOther", // ✅ FIXED
         config: {
             policies: [],
             auth: false,
         },
-    },
+    }
 ];

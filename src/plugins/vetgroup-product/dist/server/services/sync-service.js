@@ -3,53 +3,82 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.syncItems = void 0;
 const axios_1 = __importDefault(require("axios"));
-exports.default = ({ strapi }) => ({
-    async syncItems() {
-        const { data } = await axios_1.default.get("http://87.241.165.71:8081/web/hs/Eportal/GET_ITEMS", {
-            auth: {
-                username: "001",
-                password: "001",
-            },
-        });
-        const items = data.Items;
-        let createdCount = 0;
-        let updatedCount = 0;
-        const categories = await strapi.db
-            .query("api::category.category")
-            .findMany({ select: ["id", "title"] });
-        for (const item of items) {
-            const catalogName = item.CatalogName || "";
-            const matchedCategory = categories.find((cat) => catalogName.toLowerCase().includes(cat.title.toLowerCase()));
-            const fallbackCategory = categories.find((cat) => cat.title.toLowerCase() === "other");
-            const payload = {
-                name: catalogName,
-                code: item.Articul,
-                description: item.Name,
-                backendId: item.ID,
-                stock: item.Stock ? parseInt(item.Stock.replace(",", "."), 10) : 0,
-                price: item.Price ? parseFloat(item.Price.replace(",", ".")) : 0,
-                category: matchedCategory?.id || fallbackCategory?.id,
-                pack_price: item.pack_price
-                    ? parseInt(item.pack_price.replace(",", "."))
-                    : 0,
-            };
-            const existing = await strapi.db
-                .query("api::product.product")
-                .findOne({ where: { backendId: item.ID } });
-            if (existing) {
-                await strapi.entityService.update("api::product.product", existing.id, {
-                    data: payload,
-                });
-                updatedCount++;
-            }
-            else {
-                await strapi.entityService.create("api::product.product", {
-                    data: payload,
-                });
-                createdCount++;
-            }
+const publish_1 = require("./publish");
+async function syncItems({ strapi }) {
+    const { data } = await axios_1.default.get("http://87.241.165.71:8081/web/hs/Eportal/GET_ITEMS", {
+        auth: { username: "001", password: "001" },
+    });
+    const items = data.Items;
+    let createdCount = 0;
+    let updatedCount = 0;
+    let publishedCount = 0;
+    const token = process.env.STRAPI_ADMIN_JWT?.trim();
+    if (!token)
+        throw new Error("Missing STRAPI_ADMIN_JWT");
+    const categories = await strapi.db.query("api::category.category").findMany({
+        select: ["id", "title"],
+    });
+    const fallbackCategory = categories.find(cat => cat.title.toLowerCase() === "other");
+    const publishProduct = async (documentId) => {
+        if (!documentId) {
+            console.warn("⚠️ Skipping publish — documentId is undefined");
+            return;
         }
-        return `Sync with 1C completed successfully. Created: ${createdCount}, Updated: ${updatedCount}`;
-    },
-});
+        try {
+            await axios_1.default.post("https://vetgroup.am/content-manager/collection-types/api::product.product/actions/bulkPublish", { documentIds: [documentId] }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(`✅ Published: ${documentId}`);
+            publishedCount++;
+        }
+        catch (err) {
+            console.warn(`⚠️ Failed to publish ${documentId}:`, err.response?.data || err.message);
+        }
+    };
+    for (const item of items) {
+        const catalogName = item.CatalogName || "";
+        const matchedCategory = categories.find(cat => catalogName.toLowerCase().includes(cat.title.toLowerCase()));
+        const incomingStock = Number(item.Stock?.toString().replace(",", ".").replace(/\s/g, "") || "0");
+        console.log(`📦 ID: ${item.ID} | Stock raw: ${item.Stock} → parsed: ${incomingStock}`);
+        const payload = {
+            name: catalogName,
+            code: item.Articul,
+            description: item.Name,
+            backendId: item.ID,
+            price: item.Price ? parseFloat(item.Price.replace(",", ".")) : 0,
+            category: matchedCategory?.id || fallbackCategory?.id,
+            stock: incomingStock,
+            pack_price: item.pack_price
+                ? parseInt(item.pack_price.replace(",", "."), 10)
+                : 0,
+        };
+        const existing = await strapi.db.query("api::product.product").findOne({
+            where: { backendId: item.ID }, select: ["id", "documentId"]
+        });
+        if (existing) {
+            console.log("📤 Updating product:", existing.id, payload);
+            const updated = await strapi.entityService.update("api::product.product", existing.id, {
+                data: payload,
+            });
+            console.log("✅ Updated entity stock is now:", updated.stock);
+            await publishProduct(existing.documentId);
+            updatedCount++;
+        }
+        else {
+            const created = await strapi.entityService.create("api::product.product", {
+                data: payload,
+                populate: ["documentId"]
+            });
+            await publishProduct(created.documentId);
+            createdCount++;
+        }
+    }
+    await (0, publish_1.publishUnpublishedProducts)({ strapi });
+    return `✅ Sync finished: ${createdCount} created, ${updatedCount} updated, ${publishedCount} published`;
+}
+exports.syncItems = syncItems;

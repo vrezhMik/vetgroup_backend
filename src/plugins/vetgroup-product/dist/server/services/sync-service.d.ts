@@ -1,6 +1,3 @@
-declare const _default: ({ strapi }: {
+export declare function syncItems({ strapi }: {
     strapi: any;
-}) => {
-    syncItems(): Promise<string>;
-};
-export default _default;
+}): Promise<string>;

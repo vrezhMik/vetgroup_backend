@@ -13,5 +13,10 @@ declare const _default: {
     }) => {
         publishOther(ctx: any): Promise<void>;
     };
+    update: ({ strapi }: {
+        strapi: any;
+    }) => {
+        update(ctx: any): Promise<void>;
+    };
 };
 export default _default;

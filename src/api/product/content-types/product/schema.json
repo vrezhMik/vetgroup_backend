@@ -13,12 +13,10 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string",
-      "unique": false
+      "type": "string"
     },
     "code": {
-      "type": "string",
-      "unique": false
+      "type": "string"
     },
     "description": {
       "type": "text"

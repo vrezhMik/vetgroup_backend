@@ -24,12 +24,20 @@ export default [
     },
   },
   {
-    method: "POST",
-    path: "/publish-other",
-    handler: "publish.publishOther",
-    config: {
-      policies: [],
-      auth: false,
-    },
+  method: "PUT",
+  path: "/:id",
+  handler: "update.update",
+  config: {
+    policies: [],
   },
+},
+  {
+  method: "POST",
+  path: "/publish-other",
+  handler: "plugin::vetgroup-product.publish.publishOther", // ✅ FIXED
+  config: {
+    policies: [],
+    auth: false,
+  },
+}
 ];
